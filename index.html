@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Quốc Thái & Mỹ Hằng</title>
     <link rel="stylesheet" href="./style.css?v=20.0">
-    <link rel="stylesheet" href="./style2.css?v=21.0">
+    <link rel="stylesheet" href="./style2.css?v=22.0">
     <script src="js.js?v=20.0"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,21 +143,44 @@
         </button>
     </div>
     
-    <!-- pop-up -->
+    <!-- pop-up Gửi quà mừng (chỉ hiện 1 thẻ tại 1 thời điểm) -->
     <div class="popup">
-        <div class="popup_container hide-horizontal-scrollbar">
-            <div class="popup_item popup_item1" data-copy="054223031998">
-                <img src="./source/ngang/qr_hang.jpg?v=2" alt="Mã QR mừng cưới Cô dâu Lê Thị Mỹ Hằng">
-                <div class="copy copy_chi" data-copy="054223031998" title="Sao chép số tài khoản Sacombank">
-                    <span>📋 Sao chép STK: 054223031998</span>
+        <div class="popup_box">
+            <button class="popup_close" type="button" aria-label="Đóng">&times;</button>
+            
+            <!-- Tabs Cô dâu / Chú rể -->
+            <div class="popup_tabs">
+                <button class="popup_tab active" type="button" data-target="popup_item1">
+                     Cô Dâu Mỹ Hằng
+                </button>
+                <button class="popup_tab" type="button" data-target="popup_item2">
+                     Chú Rể Quốc Thái
+                </button>
+            </div>
+
+            <!-- Khung chứa thẻ QR (chỉ hiện 1 thẻ) -->
+            <div class="popup_cards_wrapper">
+                <button class="popup_nav popup_prev" type="button" aria-label="Trước">&#10094;</button>
+                <button class="popup_nav popup_next" type="button" aria-label="Tiếp theo">&#10095;</button>
+
+                <!-- Thẻ Cô dâu (Mỹ Hằng - hiện trước) -->
+                <div class="popup_item popup_item1 active" data-copy="054223031998">
+                    <img src="./source/ngang/qr_hang.jpg?v=5" alt="Mã QR mừng cưới Cô dâu Lê Thị Mỹ Hằng">
+                    <div class="copy copy_hang" data-copy="054223031998" title="Sao chép số tài khoản Sacombank">
+                        <span> Sao chép STK: 054223031998</span>
+                    </div>
+                </div>
+
+                <!-- Thẻ Chú rể (Quốc Thái) -->
+                <div class="popup_item popup_item2" data-copy="109872928499">
+                    <img src="./source/ngang/qr_thai.jpg?v=5" alt="Mã QR mừng cưới Chú rể Bùi Quốc Thái">
+                    <div class="copy copy_thai" data-copy="109872928499" title="Sao chép số tài khoản VietinBank">
+                        <span> Sao chép STK: 109872928499</span>
+                    </div>
                 </div>
             </div>
-            <div class="popup_item popup_item2" data-copy="109872928499">
-                <img src="./source/ngang/qr_thai.jpg?v=2" alt="Mã QR mừng cưới Chú rể Bùi Quốc Thái">
-                <div class="copy copy_anh" data-copy="109872928499" title="Sao chép số tài khoản VietinBank">
-                    <span>📋 Sao chép STK: 109872928499</span>
-                </div>
-            </div>
+
+            
         </div>
     </div>
 
@@ -305,46 +328,102 @@
       }
     });
 
-    const btn_qr = document.querySelector('.js_qr')
-    const pop_up = document.querySelector('.popup')
-    const pop_up_ctn = document.querySelector('.popup_container')
-    const pop_up_item1 = document.querySelector('.popup_item1')
-    const pop_up_item2 = document.querySelector('.popup_item2')
+    const btn_qr = document.querySelector('.js_qr');
+    const pop_up = document.querySelector('.popup');
+    const popup_box = document.querySelector('.popup_box');
+    const popup_close = document.querySelector('.popup_close');
+    const popup_tabs = document.querySelectorAll('.popup_tab');
+    const popup_items = document.querySelectorAll('.popup_item');
+    const popup_prev = document.querySelector('.popup_prev');
+    const popup_next = document.querySelector('.popup_next');
+
+    function switchPopupCard(targetClass) {
+        popup_tabs.forEach(tab => {
+            if (tab.dataset.target === targetClass) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+        popup_items.forEach(item => {
+            if (item.classList.contains(targetClass)) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    function togglePopupCard() {
+        const item1 = document.querySelector('.popup_item1');
+        if (item1 && item1.classList.contains('active')) {
+            switchPopupCard('popup_item2');
+        } else {
+            switchPopupCard('popup_item1');
+        }
+    }
 
     function show_pop_up() {
-        pop_up.classList.add('show')
+        if (pop_up) {
+            pop_up.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            switchPopupCard('popup_item1'); // Mặc định mở cô dâu trước
+        }
     }
 
     function hide_pop_up() {
-        pop_up.classList.remove('show')
+        if (pop_up) {
+            pop_up.classList.remove('show');
+            document.body.style.overflow = '';
+        }
     }
 
-    btn_qr.addEventListener('click', show_pop_up)
-    pop_up.addEventListener('click', hide_pop_up)
-    pop_up_item1.addEventListener('click', function(event) {
-        event.stopPropagation();
-    })
-    pop_up_item2.addEventListener('click', function(event) {
-        event.stopPropagation();
-    })
-
-
-    // xử lý kích thước pop up
-    const items = document.querySelectorAll('.popup_item');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const ratio = entry.intersectionRatio; // 0 -> 1
-            const value = 0.8 + 0.2 * ratio; // map từ 0.5 -> 1
-            entry.target.style.opacity = value.toFixed(2);
-            entry.target.style.transform = `scale(${value.toFixed(2)})`;
+    if (btn_qr) btn_qr.addEventListener('click', show_pop_up);
+    if (pop_up) {
+        pop_up.addEventListener('click', function(e) {
+            if (e.target === pop_up) hide_pop_up();
         });
-    }, {
-        root: document.querySelector('.popup_container'),
-        threshold: Array.from({ length: 101 }, (_, i) => i / 100)
+    }
+    if (popup_close) popup_close.addEventListener('click', hide_pop_up);
+    if (popup_box) {
+        popup_box.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    popup_tabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.stopPropagation();
+            switchPopupCard(this.dataset.target);
+        });
     });
 
-    items.forEach(item => observer.observe(item));
+    if (popup_prev) {
+        popup_prev.addEventListener('click', function(e) {
+            e.stopPropagation();
+            togglePopupCard();
+        });
+    }
+    if (popup_next) {
+        popup_next.addEventListener('click', function(e) {
+            e.stopPropagation();
+            togglePopupCard();
+        });
+    }
+
+    // Hỗ trợ vuốt tay trên điện thoại
+    let touchStartX = 0;
+    if (popup_box) {
+        popup_box.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+        popup_box.addEventListener('touchend', function(e) {
+            const touchEndX = e.changedTouches[0].screenX;
+            if (Math.abs(touchStartX - touchEndX) > 40) {
+                togglePopupCard();
+            }
+        }, {passive: true});
+    }
 
 
     // copyyyyyyyyyyy
