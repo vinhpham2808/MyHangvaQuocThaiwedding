@@ -517,25 +517,24 @@ animation: flash-shadow 2s infinite;
 .thank_desc > img {
     height: 50px;
     margin-top: 12px;
-    
+    filter: brightness(0);
 }
 
 .thank_desc {
-    line-height: 30px;
-    padding-bottom: 24px;
-    background-color: rgba(236, 236, 236, 0.322);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    line-height: 34px;
+    padding: 16px 0 24px;
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     width: 100%;
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: #111111;
 
     font-family: "Alex Brush", cursive;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
-    font-size: 30px;
-    text-shadow: 0 0 20px rgb(0, 0, 0);
-
+    font-size: 32px;
+    text-shadow: none;
 }
 
 .thank_desc {
