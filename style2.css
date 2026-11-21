@@ -1,0 +1,654 @@
+.moi_container {
+    margin-top: 32px;
+    color: #00240e;
+}
+
+.moi_desc1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 4px;
+}
+
+.moi_desc2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.moi_img {
+    margin: 24px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+.img_big {
+    height: auto;
+    width: 36%;
+    border-radius: 18px;
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
+    /* animation: flash-shadow-img 2s infinite; */
+    z-index: 2;
+
+    transition: all 2s ease-in-out;
+
+}
+
+.img_small {
+    height: auto;
+    width: 28%;
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
+    /* animation: flash-shadow-img 2s infinite; */
+    transform: scale(1);
+    opacity: 1;
+    border-radius: 14px;
+    z-index: 1;
+
+    transition: all 2s ease-in-out;
+}
+
+@keyframes flash-shadow-img {
+    0%, 100% 
+    {
+        box-shadow: 0 0 5px rgba(157, 157, 157, 0.534);
+    }
+    50% 
+    {
+        box-shadow: 0 0 7px rgba(60, 60, 60, 0.556);
+    }
+}
+
+.js_left {
+    opacity: 0;
+    transform: translateX(-80px);
+}
+
+.js_center {
+    transform: scale(1.5);
+}
+
+.js_right {
+    opacity: 0;
+    transform: translateX(80px);
+}
+
+.moi_desc3 {
+    color: #725627;
+    text-align: justify;
+    text-indent: 30px;
+    font-size: 14px;
+    width: 80%;
+    margin: 24px auto;
+    font-style: italic;
+    line-height: 18px;
+}
+
+
+
+/* comfirm.......................................................................................... */
+.cf_container {
+    margin-top: 30px;
+    box-shadow: 0 5px 20px rgba(225, 237, 235, 0.648);
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    border-radius: 16px;
+    margin-bottom: 100px;
+
+    background-color: rgb(242, 251, 251);
+}
+
+.cf_container {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 4.2s ease;
+    color: #001508;
+
+}
+
+.cf_container.show {
+
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes flash-shadow {
+    0%, 100% 
+    {
+        box-shadow: 0 0 12px rgb(208, 211, 211);
+    }
+    50% 
+    {
+        box-shadow: 0 0 15px rgb(179, 190, 188);
+    }
+}
+
+.nhay-shadow {
+animation: flash-shadow 2s infinite;
+}
+
+
+
+.cf_container > div {
+    margin-top: 8px;
+}
+
+.cf_desc1 {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+    
+}
+
+.cf_desc2 {
+    text-transform: uppercase;
+    font-size: 16px;
+    
+}
+
+.cf_desc3 {
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 16px;
+}
+
+.cf_desc4 {
+    color: #333;
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 18px;
+}
+
+.cf_btn {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    width: 60%;
+    margin: 8px 0;
+    cursor: pointer;
+    box-shadow: 0 5px 6px 2px rgba(174, 174, 174, 0.4);
+    background-color: #e0edec;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.cf_btn:hover {
+    background-color: #ccd4d3;
+    box-shadow: 0 5px 6px 0 rgba(120, 120, 120, 0.4);
+    font-size: 13.8px;
+}
+
+.cf_btn > a {
+    text-decoration: none;
+    color: black;
+}
+
+/* .cf_icon {
+    display: block;
+    margin-top: 12px !important;
+}
+
+.cf_map {
+    display: block;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid #909090;
+    border-radius: 50%;
+    padding: 14px;
+    margin: 0 auto;
+} */
+
+/* pop_up........................... */
+.popup {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    z-index: 3;
+    background-color: #55555570;
+    align-items: center;
+    justify-content: center;
+    max-width: 700px;
+}
+
+.popup.show {
+    display: flex;
+}
+
+.popup_container {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    padding: 0 50px;
+    scroll-padding: 50px;
+    border-radius: 8px;
+    /* gap: 12px; */
+
+    /* background-color: #858585; */
+    scroll-behavior: smooth;
+
+}
+
+.popup_item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    /* max-width: 85%; */
+    position: relative;
+    
+    /* background-color: black; */
+}
+
+.popup_item {
+    opacity: 0.8;
+    transform: scale(0.8);
+    transition: opacity 0.2s linear, transform 0.2s linear;
+  }
+  
+
+
+.popup_item > img {
+    border-radius: 18px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 440px) {
+    .popup_container {
+        width: 100%;
+        padding: 0 80px;
+        scroll-padding: 80px;
+        border-radius: 8px;
+        /* gap: 12px; */
+    }
+}
+  
+
+/* transform: translateX(60px) */
+/* transform: translateX(-60px) */
+
+.copy {
+    position: absolute;
+    top: 23%;
+    left: 63%;
+    width: 8%;
+    height: 6%;
+    /* background-color: rgba(255, 0, 0, 0.312); */
+    z-index: 4; /* đảm bảo nổi lên trên */
+    cursor: pointer;
+}
+
+#copy-toast {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #222;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 5;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  #copy-toast.show {
+    opacity: 1;
+  }
+
+
+.hide-horizontal-scrollbar {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE, Edge cũ */
+  }
+  
+  .hide-horizontal-scrollbar::-webkit-scrollbar {
+    height: 0px; /* Chrome, Safari */
+  }
+
+/* album....................................................................................... */
+
+.album_header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.album_header span {
+    font-family: 'Alex Brush', cursive;
+    font-size: 24px;
+    color: #555;
+    white-space: nowrap;
+    margin-left: 8px;
+}
+
+.line {
+    flex: 1;
+    height: 1.5px;
+    background-color: #858585;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.album_container {
+    column-count: 2;
+    column-gap: 1.5%; /* Khoảng cách giữa 2 cột */
+    padding: 8px;
+}
+
+.album_container > img {
+    width: 100%;
+    display: block;
+    margin-bottom: 3%;
+    transition: all 2s ease-in-out;
+}
+
+.album_left {
+    transform: translateX(-100px);
+    opacity: 0;
+}
+
+.album_right {
+    transform: translateX(100px);
+    opacity: 0;
+}
+
+/* thank................................................................................... */
+
+.thank_container {
+    height: 100vh;
+    width: 100%;
+    background-image: url(./source/doc/cam_dep.jpg);
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.thank_desc > img {
+    height: 50px;
+    margin-top: 12px;
+    
+}
+
+.thank_desc {
+    line-height: 30px;
+    padding-bottom: 24px;
+    background-color: rgba(236, 236, 236, 0.322);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    width: 100%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+
+    font-family: "Alex Brush", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    text-shadow: 0 0 20px rgb(0, 0, 0);
+
+}
+
+.thank_desc {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s ease-in-out;
+}
+
+.thank_desc.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.footter {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    color: #5555557a;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+    font-size: 10px;
+}
+
+.footer-link {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    margin-left: 4px;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.footer-link:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+    transform: scale(1.1);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+/* RSVP Modal Popup */
+.popup_rsvp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.popup_rsvp.show {
+    display: flex;
+}
+
+.rsvp_card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 440px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    position: relative;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    animation: rsvpFadeIn 0.3s ease-out;
+}
+
+@keyframes rsvpFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.rsvp_close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f0f4f4;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+}
+
+.rsvp_close:hover {
+    background: #e2e8e8;
+    color: #111;
+}
+
+.rsvp_header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rsvp_title {
+    font-family: 'Alex Brush', cursive;
+    font-size: 38px;
+    color: #712f00;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.rsvp_subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.rsvp_field {
+    margin-bottom: 15px;
+}
+
+.rsvp_label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 6px;
+}
+
+.rsvp_input, .rsvp_select, .rsvp_textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #d4dedd;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fbfdfd;
+}
+
+.rsvp_input:focus, .rsvp_select:focus, .rsvp_textarea:focus {
+    border-color: #5a8a86;
+    box-shadow: 0 0 0 3px rgba(90, 138, 134, 0.15);
+}
+
+.rsvp_textarea {
+    resize: vertical;
+    min-height: 65px;
+}
+
+.rsvp_options {
+    display: flex;
+    gap: 10px;
+}
+
+.rsvp_radio_btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 6px;
+    border: 1.5px solid #d4dedd;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: center;
+    background: #fbfdfd;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.rsvp_radio_btn input {
+    display: none;
+}
+
+.rsvp_radio_btn.active {
+    background: #e0edec;
+    border-color: #5a8a86;
+    color: #0b4540;
+    font-weight: bold;
+}
+
+.rsvp_submit_btn {
+    width: 100%;
+    padding: 12px;
+    background: #00240e;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 36, 14, 0.2);
+    margin-top: 6px;
+}
+
+.rsvp_submit_btn:hover {
+    background: #0b4540;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 36, 14, 0.3);
+}
+
+.rsvp_success {
+    display: none;
+    text-align: center;
+    padding: 24px 12px;
+}
+
+.rsvp_success_icon {
+    font-size: 48px;
+    color: #107c41;
+    margin-bottom: 12px;
+}
+
+.rsvp_success_title {
+    font-family: 'Alex Brush', cursive;
+    font-size: 36px;
+    color: #712f00;
+    margin-bottom: 8px;
+}
+
+.rsvp_success_text {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.5;
+}
