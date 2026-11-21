@@ -119,10 +119,10 @@ body {
     width: 92%;
     margin: 4%;
     border-radius: 20px;
-    background: #7d7d7d45;
+    background: rgba(255, 255, 255, 0.45);
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    color: white;
+    color: #111;
     text-align: center;
     z-index: 1;
 }
@@ -130,16 +130,16 @@ body {
 .thiep_container {
     position: relative;
     z-index: 1;
-    color: white;
+    color: #111;
     text-align: center;
-    text-shadow: 0 0 20px rgb(0, 0, 0);
+    text-shadow: none;
 }
 
 .thiep_des {
     margin: 18px;
     margin-bottom: 24px;
     font-size: 30px;
-    color: #ffffff;
+    color: #222;
     opacity: 0.9;
 }
 
@@ -164,7 +164,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    color: white;
+    color: #111;
 }
 
 .hr-wrapper {
@@ -173,8 +173,8 @@ body {
     left: 50%;
     transform: translateX(-50%);
     height: 1px;
-    background-color: white;
-    border: white;
+    background-color: #555;
+    border: #555;
     width: 200px;
 }
 
@@ -200,7 +200,7 @@ body {
 .thiep_item hr {
     width: 100%;
     border: none;
-    border-top: 1px solid white;
+    border-top: 1px solid #666;
     margin: 2px 0;
 }
 
@@ -259,7 +259,7 @@ body {
 .hr-add {
     margin-top: 18px;
     height: 1px;
-    background-color: white;
+    background-color: #555;
     width: 200px; /* giống hr-wrapper */
     margin-left: auto;
     margin-right: auto;
@@ -278,14 +278,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid white;
+    border: 1px solid #555;
     border-radius: 50%;
     padding: 12px;
     margin: 0 auto;
 }
 
 .thiep_map:hover {
-    border: 1px solid rgb(125, 125, 125);
+    border: 1px solid rgb(100, 100, 100);
 }
 
 .thiep_map > img {

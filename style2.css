@@ -460,24 +460,39 @@ animation: flash-shadow 2s infinite;
 
 .album_container {
     column-count: 2;
-    column-gap: 1.5%; /* Khoảng cách giữa 2 cột */
-    padding: 8px;
+    column-gap: 6px;
+    padding: 8px 6px;
+    width: 100%;
 }
 
 .album_container > img {
     width: 100%;
     display: block;
-    margin-bottom: 3%;
-    transition: all 2s ease-in-out;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.13);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 2s ease-in-out;
+    cursor: pointer;
+    break-inside: avoid;
+}
+
+.album_container > img:hover {
+    transform: scale(1.025);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+}
+
+/* Ảnh lớn - chiếm nhiều hơn trong masonry */
+.album_container > img:nth-child(3n+1) {
+    margin-bottom: 6px;
 }
 
 .album_left {
-    transform: translateX(-100px);
+    transform: translateX(-80px);
     opacity: 0;
 }
 
 .album_right {
-    transform: translateX(100px);
+    transform: translateX(80px);
     opacity: 0;
 }
 
