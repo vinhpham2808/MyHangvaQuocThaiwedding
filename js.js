@@ -108,39 +108,80 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// nhạc
+// Quản lý phát / bật / tắt nhạc nền
 window.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('myAudio');
     const indicator = document.getElementById('audioIndicator');
-  
-    const playAudio = () => {
-      if (!audio.paused) return;
-  
-      audio.play()
-        .then(() => {
-          console.log('Phát nhạc thành công');
-          indicator.style.display = 'none'; // ẩn cái loa
-          removeListeners();
-        })
-        .catch((err) => {
-          console.warn('Trình duyệt chặn phát nhạc:', err);
-          // Vẫn giữ loa lại để chờ thao tác khác
+    if (!audio || !indicator) return;
+
+    audio.loop = true;
+
+    // Cập nhật giao diện nút loa theo trạng thái audio thực tế
+    const updateUI = () => {
+        if (!audio.paused) {
+            indicator.classList.add('playing');
+            indicator.setAttribute('title', 'Tắt nhạc');
+            indicator.setAttribute('aria-label', 'Tắt nhạc');
+        } else {
+            indicator.classList.remove('playing');
+            indicator.setAttribute('title', 'Bật nhạc');
+            indicator.setAttribute('aria-label', 'Bật nhạc');
+        }
+    };
+
+    audio.addEventListener('play', updateUI);
+    audio.addEventListener('pause', updateUI);
+    audio.addEventListener('ended', updateUI);
+
+    let userManuallyToggled = false;
+    const interactionEvents = ['click', 'touchstart', 'scroll', 'keydown'];
+
+    const removeAutoPlayListeners = () => {
+        interactionEvents.forEach(evt => {
+            window.removeEventListener(evt, playOnFirstInteraction, { passive: true });
+            document.removeEventListener(evt, playOnFirstInteraction, { passive: true });
         });
     };
-  
-    const removeListeners = () => {
-      ['click', 'scroll', 'touchstart', 'mousemove', 'keydown'].forEach(evt => {
-        window.removeEventListener(evt, playAudio);
-        document.removeEventListener(evt, playAudio);
-      });
+
+    // Tự động phát khi người dùng tương tác lần đầu với trang
+    const playOnFirstInteraction = () => {
+        if (userManuallyToggled) return;
+        audio.play().then(() => {
+            console.log('Tự động phát nhạc thành công');
+            removeAutoPlayListeners();
+        }).catch(err => {
+            console.warn('Trình duyệt chưa cho phép tự động phát:', err);
+        });
     };
-  
-    // Gán tất cả sự kiện tương tác
-    ['click', 'scroll', 'touchstart', 'mousemove', 'keydown'].forEach(evt => {
-      window.addEventListener(evt, playAudio);
-      document.addEventListener(evt, playAudio);
+
+    // Đăng ký các sự kiện tương tác lần đầu
+    interactionEvents.forEach(evt => {
+        window.addEventListener(evt, playOnFirstInteraction, { passive: true });
+        document.addEventListener(evt, playOnFirstInteraction, { passive: true });
     });
-  });
+
+    // Bấm trực tiếp vào nút loa để Bật / Tắt nhạc
+    indicator.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userManuallyToggled = true;
+        removeAutoPlayListeners();
+
+        if (audio.paused) {
+            audio.play().catch(err => {
+                console.warn('Lỗi khi phát nhạc:', err);
+            });
+        } else {
+            audio.pause();
+        }
+    });
+
+    // Thử phát ngay nếu trình duyệt cho phép autoplay
+    audio.play().then(() => {
+        removeAutoPlayListeners();
+    }).catch(() => {
+        updateUI();
+    });
+});
   
   
 

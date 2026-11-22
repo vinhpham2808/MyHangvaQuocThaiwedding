@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Quốc Thái & Mỹ Hằng</title>
-    <link rel="stylesheet" href="./style.css?v=22.0">
+    <link rel="stylesheet" href="./style.css?v=23.0">
     <link rel="stylesheet" href="./style2.css?v=24.0">
-    <script src="js.js?v=20.0"></script>
+    <script src="js.js?v=21.0"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,18 +27,25 @@
 
 </head>
 
-
-<audio id="myAudio" autoplay>
-    <source src="./source/music.mp3" type="audio/mpeg">
-    Trình duyệt của bạn không hỗ trợ audio.
-</audio>
-
-
-
 <body>      
-    <div id="audioIndicator">
-        <img src="./source/volume.svg" alt="">
-        
+    <audio id="myAudio" loop preload="auto">
+        <source src="./source/music.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ audio.
+    </audio>
+
+    <div id="audioIndicator" title="Bật/Tắt nhạc" aria-label="Bật/Tắt nhạc">
+        <!-- Icon khi phát nhạc (loa có sóng âm) -->
+        <svg class="music_icon music_icon_on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <!-- Icon khi tắt nhạc (loa có gạch chéo) -->
+        <svg class="music_icon music_icon_off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
     </div>
     <!-- thiệp -->
     <div class="thiep">

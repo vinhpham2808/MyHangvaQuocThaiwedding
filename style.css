@@ -35,19 +35,89 @@
 
 #audioIndicator {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 4;
+    top: 14px;
+    right: 14px;
+    z-index: 1000;
+    width: 42px;
+    height: 42px;
     background-color: #fdfaf2;
-    padding: 10px;
+    border: 1px solid rgba(26, 77, 46, 0.25);
     border-radius: 50%;
     cursor: pointer;
     user-select: none;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a4d2e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
 
-  #audioIndicator > img {
+#audioIndicator:hover {
+    transform: scale(1.08);
+    background-color: #ffffff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+#audioIndicator:active {
+    transform: scale(0.95);
+}
+
+#audioIndicator .music_icon {
+    width: 20px;
+    height: 20px;
     display: block;
-  }
+    stroke: currentColor;
+}
+
+/* Trạng thái tắt nhạc: hiển thị icon loa có gạch chéo */
+#audioIndicator .music_icon_on {
+    display: none;
+}
+#audioIndicator .music_icon_off {
+    display: block;
+    opacity: 0.85;
+}
+
+/* Trạng thái đang phát nhạc: hiển thị icon loa có sóng âm */
+#audioIndicator.playing .music_icon_on {
+    display: block;
+}
+#audioIndicator.playing .music_icon_off {
+    display: none;
+}
+
+/* Hiệu ứng gợn sóng khi nhạc đang bật */
+#audioIndicator.playing {
+    border-color: #1a4d2e;
+    animation: musicPulse 2s infinite;
+}
+
+#audioIndicator.playing .music_icon_on {
+    animation: musicBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(26, 77, 46, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(26, 77, 46, 0), 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(26, 77, 46, 0), 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@keyframes musicBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.12);
+    }
+}
 
 /* HTML................................................................. */
 
